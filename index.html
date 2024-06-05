@@ -27,6 +27,15 @@
     <div>
         Сервер 2: <span id="server2Status" class="status-indicator gray"></span>
     </div>
+    <div>
+        Сервер 3: <span id="server3Status" class="status-indicator gray"></span>
+    </div>
+    <div>
+        Сервер 4: <span id="server4Status" class="status-indicator gray"></span>
+    </div>
+    <div>
+        Сервер 5: <span id="server5Status" class="status-indicator gray"></span>
+    </div>
 
     <script>
         function checkServer(url, callback) {
@@ -37,29 +46,25 @@
         }
 
         function checkServers() {
-            const server1 = "https://cloud.itmsft.net";
-            const server2 = "https://reserve.itmsft.net";
+            const servers = [
+                { url: "https://itmsft.com", elementId: "server1Status" },
+                { url: "https://itmsft.com/my", elementId: "server2Status" },
+                { url: "https://cloud.itmsft.net:90", elementId: "server3Status" },
+                { url: "https://cloud.itmsft.net", elementId: "server4Status" },
+                { url: "https://reserve.itmsft.net", elementId: "server5Status" }
+            ];
 
-            checkServer(server1, function(isOnline) {
-                const server1Indicator = document.getElementById("server1Status");
-                if (isOnline) {
-                    server1Indicator.classList.remove("gray");
-                    server1Indicator.classList.add("green");
-                } else {
-                    server1Indicator.classList.remove("green");
-                    server1Indicator.classList.add("gray");
-                }
-            });
-
-            checkServer(server2, function(isOnline) {
-                const server2Indicator = document.getElementById("server2Status");
-                if (isOnline) {
-                    server2Indicator.classList.remove("gray");
-                    server2Indicator.classList.add("green");
-                } else {
-                    server2Indicator.classList.remove("green");
-                    server2Indicator.classList.add("gray");
-                }
+            servers.forEach(server => {
+                checkServer(server.url, function(isOnline) {
+                    const indicator = document.getElementById(server.elementId);
+                    if (isOnline) {
+                        indicator.classList.remove("gray");
+                        indicator.classList.add("green");
+                    } else {
+                        indicator.classList.remove("green");
+                        indicator.classList.add("gray");
+                    }
+                });
             });
         }
 
