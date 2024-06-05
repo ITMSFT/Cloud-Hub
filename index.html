@@ -10,6 +10,7 @@
             height: 20px;
             border-radius: 50%;
             display: inline-block;
+            margin-left: 10px;
         }
         .green {
             background-color: green;
@@ -39,7 +40,10 @@
         </tr>
         <tr>
             <td>Статус сервера:</td>
-            <td id="serverStatus">Неизвестно</td>
+            <td>
+                Основной: <span id="mainServerStatus">Неизвестно</span><span id="mainServerIndicator" class="status-indicator gray"></span><br>
+                Резервный: <span id="reserveServerStatus">Неизвестно</span><span id="reserveServerIndicator" class="status-indicator gray"></span>
+            </td>
         </tr>
         <tr>
             <td>Статус синхронизации:</td>
@@ -57,38 +61,46 @@
 
         function checkServers() {
             const servers = [
-                { url: "https://cloud.itmsft.net", name: "Основной", elementId: "server4Status" },
-                { url: "https://reserve.itmsft.net", name: "Резервный", elementId: "server5Status" }
+                { url: "https://cloud.itmsft.net", name: "Основной", statusId: "mainServerStatus", indicatorId: "mainServerIndicator" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", statusId: "reserveServerStatus", indicatorId: "reserveServerIndicator" }
             ];
 
             let mainDatacenterOnline = false;
             let reserveDatacenterOnline = false;
 
-            servers.forEach((server, index) => {
+            servers.forEach(server => {
                 checkServer(server.url, function(isOnline) {
-                    if (server.name === "Основной") mainDatacenterOnline = isOnline;
-                    if (server.name === "Резервный") reserveDatacenterOnline = isOnline;
+                    const statusElement = document.getElementById(server.statusId);
+                    const indicatorElement = document.getElementById(server.indicatorId);
+                    
+                    if (isOnline) {
+                        statusElement.textContent = "Активен";
+                        indicatorElement.classList.remove("gray");
+                        indicatorElement.classList.add("green");
+                        
+                        if (server.name === "Основной") mainDatacenterOnline = true;
+                        if (server.name === "Резервный") reserveDatacenterOnline = true;
+                    } else {
+                        statusElement.textContent = "Неактивен";
+                        indicatorElement.classList.remove("green");
+                        indicatorElement.classList.add("gray");
+                    }
 
-                    updateServerStatus(mainDatacenterOnline, reserveDatacenterOnline);
+                    updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
                 });
             });
         }
 
-        function updateServerStatus(mainOnline, reserveOnline) {
-            const serverStatus = document.getElementById("serverStatus");
+        function updateSyncStatus(mainOnline, reserveOnline) {
             const syncStatus = document.getElementById("syncStatus");
 
             if (mainOnline && !reserveOnline) {
-                serverStatus.textContent = "Основной";
                 syncStatus.textContent = "Синхронизировано";
             } else if (!mainOnline && reserveOnline) {
-                serverStatus.textContent = "Резервный";
                 syncStatus.textContent = "Синхронизировано";
             } else if (mainOnline && reserveOnline) {
-                serverStatus.textContent = "Основной";
                 syncStatus.textContent = "Идёт синхронизация";
             } else {
-                serverStatus.textContent = "Неизвестно";
                 syncStatus.textContent = "Неизвестно";
             }
         }
