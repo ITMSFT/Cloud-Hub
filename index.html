@@ -34,34 +34,16 @@
 <body>
     <table>
         <tr>
-            <th>Сервис</th>
-            <th>Статус</th>
-            <th>Синхронизация</th>
+            <th>Описание</th>
+            <th>Состояние</th>
         </tr>
         <tr>
-            <td>Инфраструктура</td>
-            <td><span id="server1Status" class="status-indicator gray"></span></td>
-            <td></td>
+            <td>Статус сервера:</td>
+            <td id="serverStatus">Неизвестно</td>
         </tr>
         <tr>
-            <td>Биллинг</td>
-            <td><span id="server2Status" class="status-indicator gray"></span></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Телефония</td>
-            <td><span id="server3Status" class="status-indicator gray"></span></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>ЦОД Основной</td>
-            <td><span id="server4Status" class="status-indicator gray"></span></td>
-            <td><span id="syncStatus1" class="sync-status"></span></td>
-        </tr>
-        <tr>
-            <td>ЦОД Резервный</td>
-            <td><span id="server5Status" class="status-indicator gray"></span></td>
-            <td><span id="syncStatus2" class="sync-status"></span></td>
+            <td>Статус синхронизации:</td>
+            <td id="syncStatus">Неизвестно</td>
         </tr>
     </table>
 
@@ -75,44 +57,40 @@
 
         function checkServers() {
             const servers = [
-                { url: "https://itmsft.com", elementId: "server1Status" },
-                { url: "https://itmsft.com", elementId: "server2Status" },
-                { url: "https://cloud.itmsft.net", elementId: "server3Status" },
-                { url: "https://cloud.itmsft.net", elementId: "server4Status", syncElementId: "syncStatus1" },
-                { url: "https://reserve.itmsft.net", elementId: "server5Status", syncElementId: "syncStatus2" }
+                { url: "https://cloud.itmsft.net", name: "Основной", elementId: "server4Status" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", elementId: "server5Status" }
             ];
 
             let mainDatacenterOnline = false;
             let reserveDatacenterOnline = false;
 
-            servers.forEach(server => {
+            servers.forEach((server, index) => {
                 checkServer(server.url, function(isOnline) {
-                    const indicator = document.getElementById(server.elementId);
-                    if (isOnline) {
-                        indicator.classList.remove("gray");
-                        indicator.classList.add("green");
+                    if (server.name === "Основной") mainDatacenterOnline = isOnline;
+                    if (server.name === "Резервный") reserveDatacenterOnline = isOnline;
 
-                        if (server.elementId === "server4Status") mainDatacenterOnline = true;
-                        if (server.elementId === "server5Status") reserveDatacenterOnline = true;
-                    } else {
-                        indicator.classList.remove("green");
-                        indicator.classList.add("gray");
-                    }
-
-                    // Обновление статуса синхронизации данных
-                    if (mainDatacenterOnline && reserveDatacenterOnline) {
-                        if (server.syncElementId) {
-                            const syncIndicator = document.getElementById(server.syncElementId);
-                            syncIndicator.textContent = "Синхронизация данных";
-                        }
-                    } else {
-                        if (server.syncElementId) {
-                            const syncIndicator = document.getElementById(server.syncElementId);
-                            syncIndicator.textContent = "";
-                        }
-                    }
+                    updateServerStatus(mainDatacenterOnline, reserveDatacenterOnline);
                 });
             });
+        }
+
+        function updateServerStatus(mainOnline, reserveOnline) {
+            const serverStatus = document.getElementById("serverStatus");
+            const syncStatus = document.getElementById("syncStatus");
+
+            if (mainOnline && !reserveOnline) {
+                serverStatus.textContent = "Основной";
+                syncStatus.textContent = "Синхронизировано";
+            } else if (!mainOnline && reserveOnline) {
+                serverStatus.textContent = "Резервный";
+                syncStatus.textContent = "Синхронизировано";
+            } else if (mainOnline && reserveOnline) {
+                serverStatus.textContent = "Основной";
+                syncStatus.textContent = "Идёт синхронизация";
+            } else {
+                serverStatus.textContent = "Неизвестно";
+                syncStatus.textContent = "Неизвестно";
+            }
         }
 
         // Запуск проверки при загрузке страницы
