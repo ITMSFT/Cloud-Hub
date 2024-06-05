@@ -1,1 +1,38 @@
-coming soon
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Link Button</title>
+</head>
+<body>
+    <button id="serverButton" onclick="checkServers()">Проверить серверы</button>
+
+    <script>
+        function checkServer(url) {
+            return fetch(url, { mode: 'no-cors' })
+                .then(response => response.ok)
+                .catch(error => false);
+        }
+
+        async function checkServers() {
+            const server1 = "https://cloud.itmsft.net/";
+            const server2 = "https://reserve.itmsft.net/";
+            const server1Status = await checkServer(server1);
+            const server2Status = await checkServer(server2);
+
+            let link;
+            if (!server1Status) {
+                link = server2;
+            } else if (!server2Status) {
+                link = server1;
+            } else {
+                link = "http://defaultserver.com"; // ссылка по умолчанию, если оба сервера работают
+            }
+
+            const button = document.getElementById("serverButton");
+            button.innerHTML = `<a href="${link}" target="_blank">Перейти на сервер</a>`;
+        }
+    </script>
+</body>
+</html>
