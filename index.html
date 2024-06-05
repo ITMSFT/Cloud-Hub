@@ -45,12 +45,12 @@
         </tr>
         <tr>
             <td>Биллинг</td>
-            <td><span id="server1Status" class="status-indicator gray"></span></td>
+            <td><span id="server2Status" class="status-indicator gray"></span></td>
             <td></td>
         </tr>
         <tr>
             <td>Телефония</td>
-            <td><span id="server1Status" class="status-indicator gray"></span></td>
+            <td><span id="server3Status" class="status-indicator gray"></span></td>
             <td></td>
         </tr>
         <tr>
@@ -76,8 +76,8 @@
         function checkServers() {
             const servers = [
                 { url: "https://itmsft.com", elementId: "server1Status" },
-                { url: "https://itmsft.com/my", elementId: "server2Status" },
-                { url: "https://cloud.itmsft.net:90", elementId: "server3Status" },
+                { url: "https://itmsft.com/", elementId: "server2Status" },
+                { url: "https://cloud.itmsft.net", elementId: "server3Status" },
                 { url: "https://cloud.itmsft.net", elementId: "server4Status", syncElementId: "syncStatus1" },
                 { url: "https://reserve.itmsft.net", elementId: "server5Status", syncElementId: "syncStatus2" }
             ];
