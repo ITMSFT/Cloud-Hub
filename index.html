@@ -18,23 +18,29 @@
         .gray {
             background-color: gray;
         }
+        .sync-status {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+            color: blue;
+        }
     </style>
 </head>
 <body>
     <div>
-        Сервер 1: <span id="server1Status" class="status-indicator gray"></span>
+        Инфраструктура: <span id="server1Status" class="status-indicator gray"></span>
     </div>
     <div>
-        Сервер 2: <span id="server2Status" class="status-indicator gray"></span>
+        Биллинг: <span id="server2Status" class="status-indicator gray"></span>
     </div>
     <div>
-        Сервер 3: <span id="server3Status" class="status-indicator gray"></span>
+        Телефония: <span id="server3Status" class="status-indicator gray"></span>
     </div>
     <div>
-        Сервер 4: <span id="server4Status" class="status-indicator gray"></span>
+        ЦОД Основной: <span id="server4Status" class="status-indicator gray"></span><span id="syncStatus1" class="sync-status"></span>
     </div>
     <div>
-        Сервер 5: <span id="server5Status" class="status-indicator gray"></span>
+        ЦОД Резервный: <span id="server5Status" class="status-indicator gray"></span><span id="syncStatus2" class="sync-status"></span>
     </div>
 
     <script>
@@ -48,11 +54,14 @@
         function checkServers() {
             const servers = [
                 { url: "https://itmsft.com", elementId: "server1Status" },
-                { url: "https://itmsft.com/my", elementId: "server2Status" },
-                { url: "https://cloud.itmsft.net:90", elementId: "server3Status" },
-                { url: "https://cloud.itmsft.net", elementId: "server4Status" },
-                { url: "https://reserve.itmsft.net", elementId: "server5Status" }
+                { url: "https://itmsft.com/", elementId: "server2Status" },
+                { url: "https://cloud.itmsft.net", elementId: "server3Status" },
+                { url: "https://cloud.itmsft.net", elementId: "server4Status", syncElementId: "syncStatus1" },
+                { url: "https://reserve.itmsft.net", elementId: "server5Status", syncElementId: "syncStatus2" }
             ];
+
+            let mainDatacenterOnline = false;
+            let reserveDatacenterOnline = false;
 
             servers.forEach(server => {
                 checkServer(server.url, function(isOnline) {
@@ -60,9 +69,25 @@
                     if (isOnline) {
                         indicator.classList.remove("gray");
                         indicator.classList.add("green");
+
+                        if (server.elementId === "server4Status") mainDatacenterOnline = true;
+                        if (server.elementId === "server5Status") reserveDatacenterOnline = true;
                     } else {
                         indicator.classList.remove("green");
                         indicator.classList.add("gray");
+                    }
+
+                    // Обновление статуса синхронизации данных
+                    if (mainDatacenterOnline && reserveDatacenterOnline) {
+                        if (server.syncElementId) {
+                            const syncIndicator = document.getElementById(server.syncElementId);
+                            syncIndicator.textContent = "Синхронизация данных";
+                        }
+                    } else {
+                        if (server.syncElementId) {
+                            const syncIndicator = document.getElementById(server.syncElementId);
+                            syncIndicator.textContent = "";
+                        }
                     }
                 });
             });
