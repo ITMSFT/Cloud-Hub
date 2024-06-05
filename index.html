@@ -27,7 +27,6 @@
     <div>
         Сервер 2: <span id="server2Status" class="status-indicator gray"></span>
     </div>
-    <button onclick="checkServers()">Проверить серверы</button>
 
     <script>
         function checkServer(url, callback) {
@@ -63,6 +62,9 @@
                 }
             });
         }
+
+        // Запуск проверки при загрузке страницы
+        window.onload = checkServers;
     </script>
 </body>
 </html>
