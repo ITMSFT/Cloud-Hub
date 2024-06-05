@@ -30,11 +30,13 @@
             padding: 10px;
             text-align: left;
         }
-        .refresh-button {
+        .refresh-link {
             margin-top: 20px;
-            padding: 10px 20px;
+            display: inline-block;
             font-size: 16px;
             cursor: pointer;
+            text-decoration: underline;
+            color: blue;
         }
     </style>
 </head>
@@ -65,7 +67,7 @@
         </tr>
     </table>
     
-    <button class="refresh-button" onclick="refreshPage()">Обновить</button>
+    <a class="refresh-link" href="#" onclick="refreshPage()">Обновить</a>
 
     <script>
         function checkServer(url, callback) {
