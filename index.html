@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Link Button</title>
+    <title>Server Status</title>
+    <style>
+        .status-indicator {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 10px;
+        }
+        .green {
+            background-color: green;
+        }
+        .gray {
+            background-color: gray;
+        }
+    </style>
 </head>
 <body>
-    <button id="serverButton" onclick="checkServers()">Проверить серверы</button>
+    <div>
+        Сервер 1: <span id="server1Status" class="status-indicator gray"></span>
+    </div>
+    <div>
+        Сервер 2: <span id="server2Status" class="status-indicator gray"></span>
+    </div>
+    <button onclick="checkServers()">Проверить серверы</button>
 
     <script>
         function checkServer(url) {
@@ -18,20 +39,28 @@
         async function checkServers() {
             const server1 = "https://cloud.itmsft.net/";
             const server2 = "https://reserve.itmsft.net/";
+
             const server1Status = await checkServer(server1);
             const server2Status = await checkServer(server2);
 
-            let link;
-            if (!server1Status) {
-                link = server2;
-            } else if (!server2Status) {
-                link = server1;
+            const server1Indicator = document.getElementById("server1Status");
+            const server2Indicator = document.getElementById("server2Status");
+
+            if (server1Status) {
+                server1Indicator.classList.remove("gray");
+                server1Indicator.classList.add("green");
             } else {
-                link = "http://defaultserver.com"; // ссылка по умолчанию, если оба сервера работают
+                server1Indicator.classList.remove("green");
+                server1Indicator.classList.add("gray");
             }
 
-            const button = document.getElementById("serverButton");
-            button.innerHTML = `<a href="${link}" target="_blank">Перейти на сервер</a>`;
+            if (server2Status) {
+                server2Indicator.classList.remove("gray");
+                server2Indicator.classList.add("green");
+            } else {
+                server2Indicator.classList.remove("green");
+                server2Indicator.classList.add("gray");
+            }
         }
     </script>
 </body>
