@@ -41,8 +41,8 @@
         <tr>
             <td>Статус сервера:</td>
             <td>
-                Основной: <span id="mainServerStatus">Неизвестно</span><span id="mainServerIndicator" class="status-indicator gray"></span><br>
-                Резервный: <span id="reserveServerStatus">Неизвестно</span><span id="reserveServerIndicator" class="status-indicator gray"></span>
+                Основной: <span id="mainServerIndicator" class="status-indicator gray"></span><br>
+                Резервный: <span id="reserveServerIndicator" class="status-indicator gray"></span>
             </td>
         </tr>
         <tr>
@@ -61,8 +61,8 @@
 
         function checkServers() {
             const servers = [
-                { url: "https://cloud.itmsft.net", name: "Основной", statusId: "mainServerStatus", indicatorId: "mainServerIndicator" },
-                { url: "https://reserve.itmsft.net", name: "Резервный", statusId: "reserveServerStatus", indicatorId: "reserveServerIndicator" }
+                { url: "https://cloud.itmsft.net", name: "Основной", indicatorId: "mainServerIndicator" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", indicatorId: "reserveServerIndicator" }
             ];
 
             let mainDatacenterOnline = false;
@@ -70,18 +70,15 @@
 
             servers.forEach(server => {
                 checkServer(server.url, function(isOnline) {
-                    const statusElement = document.getElementById(server.statusId);
                     const indicatorElement = document.getElementById(server.indicatorId);
                     
                     if (isOnline) {
-                        statusElement.textContent = "Активен";
                         indicatorElement.classList.remove("gray");
                         indicatorElement.classList.add("green");
                         
                         if (server.name === "Основной") mainDatacenterOnline = true;
                         if (server.name === "Резервный") reserveDatacenterOnline = true;
                     } else {
-                        statusElement.textContent = "Неактивен";
                         indicatorElement.classList.remove("green");
                         indicatorElement.classList.add("gray");
                     }
