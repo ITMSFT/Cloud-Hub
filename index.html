@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Server Status</title>
     <style>
+        .status-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
         .status-indicator {
             width: 20px;
             height: 20px;
             border-radius: 50%;
             display: inline-block;
-            margin: 0 10px;
+            margin-right: 10px;
         }
         .green {
             background-color: green;
@@ -19,7 +24,6 @@
             background-color: gray;
         }
         .sync-status {
-            display: inline-block;
             margin-left: 10px;
             font-weight: bold;
             color: blue;
@@ -27,20 +31,27 @@
     </style>
 </head>
 <body>
-    <div>
-        Инфраструктура: <span id="server1Status" class="status-indicator gray"></span>
+    <div class="status-container">
+        <span>Инфраструктура:</span>
+        <span id="server1Status" class="status-indicator gray"></span>
     </div>
-    <div>
-        Биллинг: <span id="server2Status" class="status-indicator gray"></span>
+    <div class="status-container">
+        <span>Биллинг:</span>
+        <span id="server2Status" class="status-indicator gray"></span>
     </div>
-    <div>
-        Телефония: <span id="server3Status" class="status-indicator gray"></span>
+    <div class="status-container">
+        <span>Телефония:</span>
+        <span id="server3Status" class="status-indicator gray"></span>
     </div>
-    <div>
-        ЦОД Основной: <span id="server4Status" class="status-indicator gray"></span><span id="syncStatus1" class="sync-status"></span>
+    <div class="status-container">
+        <span>ЦОД Основной:</span>
+        <span id="server4Status" class="status-indicator gray"></span>
+        <span id="syncStatus1" class="sync-status"></span>
     </div>
-    <div>
-        ЦОД Резервный: <span id="server5Status" class="status-indicator gray"></span><span id="syncStatus2" class="sync-status"></span>
+    <div class="status-container">
+        <span>ЦОД Резервный:</span>
+        <span id="server5Status" class="status-indicator gray"></span>
+        <span id="syncStatus2" class="sync-status"></span>
     </div>
 
     <script>
@@ -54,8 +65,8 @@
         function checkServers() {
             const servers = [
                 { url: "https://itmsft.com", elementId: "server1Status" },
-                { url: "https://itmsft.com/", elementId: "server2Status" },
-                { url: "https://cloud.itmsft.net", elementId: "server3Status" },
+                { url: "https://itmsft.com/my", elementId: "server2Status" },
+                { url: "https://cloud.itmsft.net:90", elementId: "server3Status" },
                 { url: "https://cloud.itmsft.net", elementId: "server4Status", syncElementId: "syncStatus1" },
                 { url: "https://reserve.itmsft.net", elementId: "server5Status", syncElementId: "syncStatus2" }
             ];
