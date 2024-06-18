@@ -3,129 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Server Status</title>
-    <style>
-        .status-indicator {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: 10px;
-        }
-        .green {
-            background-color: green;
-        }
-        .gray {
-            background-color: gray;
-        }
-        .sync-status {
-            font-weight: bold;
-            color: blue;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        td, th {
-            padding: 10px;
-            text-align: left;
-        }
-        .refresh-link {
-            margin-top: 20px;
-            display: inline-block;
-            font-size: 16px;
-            cursor: pointer;
-            text-decoration: underline;
-            color: blue;
-        }
-    </style>
+    <title>GitHub Styled Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Описание</th>
-            <th>Состояние</th>
-        </tr>
-        <tr>
-            <td>Статус:</td>
-            <td>
-                <table>
-                    <tr>
-                        <td>Основной:</td>
-                        <td><span id="mainServerIndicator" class="status-indicator gray"></span></td>
-                    </tr>
-                    <tr>
-                        <td>Резервный:</td>
-                        <td><span id="reserveServerIndicator" class="status-indicator gray"></span></td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-        <tr>
-            <td>Репликация:</td>
-            <td id="syncStatus">Неизвестно</td>
-        </tr>
-    </table>
-    
-    <a class="refresh-link" href="#" onclick="refreshPage()">Обновить</a>
-
-    <script>
-        function checkServer(url, callback) {
-            const img = new Image();
-            img.onload = function() { callback(true); };
-            img.onerror = function() { callback(false); };
-            img.src = url + "/favicon.ico?" + new Date().getTime();
-        }
-
-        function checkServers() {
-            const servers = [
-                { url: "https://cloud.itmsft.net", name: "Основной", indicatorId: "mainServerIndicator" },
-                { url: "https://reserve.itmsft.net", name: "Резервный", indicatorId: "reserveServerIndicator" }
-            ];
-
-            let mainDatacenterOnline = false;
-            let reserveDatacenterOnline = false;
-
-            servers.forEach(server => {
-                checkServer(server.url, function(isOnline) {
-                    const indicatorElement = document.getElementById(server.indicatorId);
-                    
-                    if (isOnline) {
-                        indicatorElement.classList.remove("gray");
-                        indicatorElement.classList.add("green");
-                        
-                        if (server.name === "Основной") mainDatacenterOnline = true;
-                        if (server.name === "Резервный") reserveDatacenterOnline = true;
-                    } else {
-                        indicatorElement.classList.remove("green");
-                        indicatorElement.classList.add("gray");
-                    }
-
-                    updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
-                });
-            });
-        }
-
-        function updateSyncStatus(mainOnline, reserveOnline) {
-            const syncStatus = document.getElementById("syncStatus");
-
-            if (mainOnline && !reserveOnline) {
-                syncStatus.textContent = "Синхронизировано";
-            } else if (!mainOnline && reserveOnline) {
-                syncStatus.textContent = "Синхронизировано";
-            } else if (mainOnline && reserveOnline) {
-                syncStatus.textContent = "Идёт синхронизация";
-            } else {
-                syncStatus.textContent = "Неизвестно";
-            }
-        }
-
-        function refreshPage() {
-            location.reload();
-        }
-
-        // Запуск проверки при загрузке страницы
-        window.onload = checkServers;
-    </script>
+    <div class="background"></div>
+    <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <div class="translucent-box">
+                    <pre><code>Terminal-like text here</code></pre>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="translucent-box">
+                    <pre><code>Terminal-like text here</code></pre>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="translucent-box">
+                    <pre><code>Terminal-like text here</code></pre>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12">
+                <div class="translucent-box large-box">
+                    <button type="button" class="btn btn-primary m-2">Button 1</button>
+                    <button type="button" class="btn btn-secondary m-2">Button 2</button>
+                    <button type="button" class="btn btn-success m-2">Button 3</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="translucent-box">
+                    <pre><code>Terminal-like text here</code></pre>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="translucent-box">
+                    <pre><code>Terminal-like text here</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
