@@ -3,7 +3,7 @@ body, html {
     margin: 0;
     font-family: Arial, sans-serif;
     color: rgb(44, 35, 35);
-    /*overflow: hidden;  Убираем прокрутку */
+    overflow: auto; /* Разрешаем прокрутку */
 }
 
 .background {
