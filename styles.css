@@ -2,9 +2,8 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: Arial, sans-serif;
-    color: white;
+    color: rgb(44, 35, 35);
     overflow: hidden; /* Убираем прокрутку */
-    background-color: #050d1f; /* Заливаем бекграунд */
 }
 
 .background {
@@ -14,23 +13,17 @@ body, html {
     width: 100%;
     height: 100%;
     z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #050d1f; /* Заливаем бекграунд */
+    overflow: hidden;
 }
 
 #bg-video {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
     width: auto;
-    height: auto;
+    height: 100%;
+    transform: translate(-50%, -50%);
     z-index: -1;
-    background-color: #050d1f;
 }
 
 .translucent-box {
