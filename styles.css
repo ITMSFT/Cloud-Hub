@@ -79,6 +79,18 @@ body, html {
     gap: 10px; /* Добавляем промежуток между кнопками */
 }
 
+.button-group-small {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+.btn-small {
+    font-size: 12px;
+    padding: 5px 10px;
+    margin: 5px;
+}
+
 pre {
     background: none;
     border: none;
