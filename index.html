@@ -40,7 +40,7 @@
                         <pre><code>
 <span class="terminal-text yellow">Телефон: <a class="yellow" href="tel:+380487063848">+38 (048) 706-38-48</a></span>
 <span class="terminal-text yellow">Резервная линия: <a class="yellow" href="tel:+380487016551">+38 (048) 701-65-51</a></span>
-<span class="terminal-text red">Email: <a class="red" href="mailto:support@itmsft.net">support@itmsft.net</a></span>
+<span class="terminal-text red">Email: <a class="red" href="mailto:mail@itmsft.net">mail@itmsft.net</a></span>
                         </code></pre>
                         <div class="messenger-icons">
                             <a href="https://t.me/itmsft_bot" class="messenger-icon"><i class="fab fa-telegram-plane"></i></a>
@@ -51,8 +51,8 @@
                 </div>
                 <div class="col-md-4">
                     <div class="translucent-box">
-                        <h3 class="box-title">Title 2</h3>
-                        <pre><code>Terminal-like text here</code></pre>
+                        <h3 class="box-title">HEARTBEAT СЛУЖБ</h3>
+                        <pre><code id="heartbeat-services">Loading...</code></pre>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -90,5 +90,23 @@
             </div>
         </div>
     </div>
+    <script>
+        // Функция для загрузки и отображения содержимого файла
+        async function loadHeartbeatServices() {
+            try {
+                const response = await fetch('services.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('heartbeat-services').innerText = text;
+            } catch (error) {
+                document.getElementById('heartbeat-services').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Загрузка данных при загрузке страницы
+        window.onload = loadHeartbeatServices;
+    </script>
 </body>
 </html>
