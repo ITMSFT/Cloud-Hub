@@ -84,7 +84,7 @@
                     <div class="translucent-box large-box">
                         <h3 class="box-title">Панели управления</h3>
                         <div class="button-group">
-                            <button type="button" class="btn btn-primary m-2">Button 1</button>
+                            <button type="button" class="btn btn-primary m-2" id="hostingPanelButton">Хостинг панель</button>
                             <button type="button" class="btn btn-secondary m-2">Button 2</button>
                             <button type="button" class="btn btn-success m-2">Button 3</button>
                         </div>
@@ -154,6 +154,16 @@
 
                     updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
                 });
+            });
+
+            // Обновляем ссылку кнопки в зависимости от состояния сервера
+            const hostingPanelButton = document.getElementById('hostingPanelButton');
+            hostingPanelButton.addEventListener('click', function() {
+                if (mainDatacenterOnline) {
+                    window.location.href = 'https://cloud.itmsft.net';
+                } else {
+                    window.location.href = 'https://reserve.itmsft.net';
+                }
             });
         }
 
