@@ -69,11 +69,12 @@ body, html {
     justify-content: flex-start; /* Выравнивание заголовка влево */
     align-items: center;
     flex-direction: column; /* Добавлено для вертикального выравнивания */
-    height: 200px;
+    height: auto;
 }
 
 .button-group {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 10px; /* Добавляем промежуток между кнопками */
