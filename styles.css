@@ -46,6 +46,14 @@ body, html {
     color: #800080; /* Фиолетовый цвет заголовков */
 }
 
+.small-box {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 .large-box {
     display: flex;
     justify-content: center;
@@ -82,5 +90,9 @@ code {
 
     .button-group {
         flex-direction: column; /* Кнопки в столбик на маленьких экранах */
+    }
+
+    .small-box {
+        height: auto;
     }
 }
