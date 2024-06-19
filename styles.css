@@ -42,11 +42,23 @@ body, html {
     color: #00ff00; /* Зеленый текст */
 }
 
+.box-title {
+    color: #800080; /* Фиолетовый цвет заголовков */
+}
+
 .large-box {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column; /* Добавлено для вертикального выравнивания */
     height: 200px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Добавляем промежуток между кнопками */
 }
 
 pre {
@@ -66,5 +78,9 @@ code {
 @media (max-width: 768px) {
     .large-box {
         flex-direction: column;
+    }
+
+    .button-group {
+        flex-direction: column; /* Кнопки в столбик на маленьких экранах */
     }
 }
