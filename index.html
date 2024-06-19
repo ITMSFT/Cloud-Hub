@@ -189,4 +189,10 @@
         }
 
         // Запуск проверки при загрузке страницы
-        window.onload
+        window.onload = function() {
+            loadHeartbeatServices();
+            checkServers();
+        };
+    </script>
+</body>
+</html>
