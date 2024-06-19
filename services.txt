@@ -1,7 +1,7 @@
-🟢Cлужбы Microsoft
-🟢Cлужбы Google
-🟢Облачные сервисы
-🟢DNS службы
-🟢CDN службы
-🟢ITMSFT Биллинг
-🟢ITMSFT Телефония
+🟢 Cлужбы Microsoft
+🟢 Cлужбы Google
+🟢 Облачные сервисы
+🟢 DNS службы
+🟢 CDN службы
+🟢 ITMSFT Биллинг
+🟢 ITMSFT Телефония
