@@ -69,11 +69,11 @@
                                     <table>
                                         <tr>
                                             <td>Основной:</td>
-                                            <td><span id="mainServerIndicator" class="status-indicator gray"></span></td>
+                                            <td id="mainServerStatus">Проверка...</td>
                                         </tr>
                                         <tr>
                                             <td>Резервный:</td>
-                                            <td><span id="reserveServerIndicator" class="status-indicator gray"></span></td>
+                                            <td id="reserveServerStatus">Проверка...</td>
                                         </tr>
                                     </table>
                                 </td>
@@ -143,8 +143,8 @@
 
         function checkServers() {
             const servers = [
-                { url: "https://cloud.itmsft.net", name: "Основной", indicatorId: "mainServerIndicator" },
-                { url: "https://reserve.itmsft.net", name: "Резервный", indicatorId: "reserveServerIndicator" }
+                { url: "https://cloud.itmsft.net", name: "Основной", statusId: "mainServerStatus" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", statusId: "reserveServerStatus" }
             ];
 
             let mainDatacenterOnline = false;
@@ -152,17 +152,15 @@
 
             servers.forEach(server => {
                 checkServer(server.url, function(isOnline) {
-                    const indicatorElement = document.getElementById(server.indicatorId);
+                    const statusElement = document.getElementById(server.statusId);
                     
                     if (isOnline) {
-                        indicatorElement.classList.remove("gray");
-                        indicatorElement.classList.add("green");
+                        statusElement.textContent = "Выполняется";
                         
                         if (server.name === "Основной") mainDatacenterOnline = true;
                         if (server.name === "Резервный") reserveDatacenterOnline = true;
                     } else {
-                        indicatorElement.classList.remove("green");
-                        indicatorElement.classList.add("gray");
+                        statusElement.textContent = "Гибернация";
                     }
 
                     updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
