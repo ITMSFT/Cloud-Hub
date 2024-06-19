@@ -101,8 +101,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="translucent-box">
-                        <h3 class="box-title">Title 4</h3>
-                        <pre><code>Terminal-like text here</code></pre>
+                        <h3 class="box-title">Новости платформы</h3>
+                        <pre><code id="platform-news">Loading...</code></pre>
+                        <button type="button" class="btn btn-outline-light" onclick="window.location.href='https://itmsft.com/blog/'">Все новости</button>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -126,6 +127,20 @@
                 document.getElementById('heartbeat-services').innerText = text;
             } catch (error) {
                 document.getElementById('heartbeat-services').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Функция для загрузки и отображения новостей
+        async function loadPlatformNews() {
+            try {
+                const response = await fetch('news.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('platform-news').innerText = text;
+            } catch (error) {
+                document.getElementById('platform-news').innerText = 'Ошибка загрузки данных';
             }
         }
 
@@ -196,6 +211,7 @@
         window.onload = function() {
             loadHeartbeatServices();
             checkServers();
+            loadPlatformNews(); // Загружаем новости платформы при загрузке страницы
         };
     </script>
 </body>
