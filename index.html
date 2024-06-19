@@ -60,20 +60,20 @@
                         <h3 class="box-title">Облачная инфраструктура</h3>
                         <table>
                             <tr>
-                                <th>Описание</th>
-                                <th>Состояние</th>
+                                <th class="yellow-text">Описание</th>
+                                <th class="green-text">Состояние</th>
                             </tr>
                             <tr>
-                                <td>Основной:</td>
-                                <td id="mainServerStatus">Проверка...</td>
+                                <td class="yellow-text">Основной:</td>
+                                <td class="green-text" id="mainServerStatus">Проверка...</td>
                             </tr>
                             <tr>
-                                <td>Резервный:</td>
-                                <td id="reserveServerStatus">Проверка...</td>
+                                <td class="yellow-text">Резервный:</td>
+                                <td class="green-text" id="reserveServerStatus">Проверка...</td>
                             </tr>
                             <tr>
-                                <td>Репликация:</td>
-                                <td id="syncStatus">Неизвестно</td>
+                                <td class="yellow-text">Репликация:</td>
+                                <td class="green-text" id="syncStatus">Неизвестно</td>
                             </tr>
                         </table>
                     </div>
@@ -144,7 +144,7 @@
                     const statusElement = document.getElementById(server.statusId);
                     
                     if (isOnline) {
-                        statusElement.textContent = "Выполняется";
+                        statusElement.textContent = "Активен";
                         
                         if (server.name === "Основной") mainDatacenterOnline = true;
                         if (server.name === "Резервный") reserveDatacenterOnline = true;
