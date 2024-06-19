@@ -57,8 +57,36 @@
                 </div>
                 <div class="col-md-4">
                     <div class="translucent-box">
-                        <h3 class="box-title">Title 3</h3>
-                        <pre><code>Terminal-like text here</code></pre>
+                        <h3 class="box-title">Облачная инфраструктура</h3>
+                        <table>
+                            <tr>
+                                <th>Описание</th>
+                                <th>Состояние</th>
+                            </tr>
+                            <tr>
+                                <td>Статус:</td>
+                                <td>
+                                    <table>
+                                        <tr>
+                                            <td>Основной:</td>
+                                            <td><span id="mainServerIndicator" class="status-indicator gray"></span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Резервный:</td>
+                                            <td><span id="reserveServerIndicator" class="status-indicator gray"></span></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Репликация:</td>
+                                <td id="syncStatus">Неизвестно</td>
+                            </tr>
+                        </table>
+                        <div class="links-container">
+                            <a class="refresh-link" href="#" onclick="refreshPage()">Обновить</a>
+                            <a href="https://support.itmsft.net/" target="_blank">Поддержка</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -91,22 +119,62 @@
         </div>
     </div>
     <script>
-        // Функция для загрузки и отображения содержимого файла
-        async function loadHeartbeatServices() {
-            try {
-                const response = await fetch('services.txt');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const text = await response.text();
-                document.getElementById('heartbeat-services').innerText = text;
-            } catch (error) {
-                document.getElementById('heartbeat-services').innerText = 'Ошибка загрузки данных';
+        function checkServer(url, callback) {
+            const img = new Image();
+            img.onload = function() { callback(true); };
+            img.onerror = function() { callback(false); };
+            img.src = url + "/favicon.ico?" + new Date().getTime();
+        }
+
+        function checkServers() {
+            const servers = [
+                { url: "https://cloud.itmsft.net", name: "Основной", indicatorId: "mainServerIndicator" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", indicatorId: "reserveServerIndicator" }
+            ];
+
+            let mainDatacenterOnline = false;
+            let reserveDatacenterOnline = false;
+
+            servers.forEach(server => {
+                checkServer(server.url, function(isOnline) {
+                    const indicatorElement = document.getElementById(server.indicatorId);
+                    
+                    if (isOnline) {
+                        indicatorElement.classList.remove("gray");
+                        indicatorElement.classList.add("green");
+                        
+                        if (server.name === "Основной") mainDatacenterOnline = true;
+                        if (server.name === "Резервный") reserveDatacenterOnline = true;
+                    } else {
+                        indicatorElement.classList.remove("green");
+                        indicatorElement.classList.add("gray");
+                    }
+
+                    updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
+                });
+            });
+        }
+
+        function updateSyncStatus(mainOnline, reserveOnline) {
+            const syncStatus = document.getElementById("syncStatus");
+
+            if (mainOnline && !reserveOnline) {
+                syncStatus.textContent = "Синхронизировано";
+            } else if (!mainOnline && reserveOnline) {
+                syncStatus.textContent = "Синхронизировано";
+            } else if (mainOnline && reserveOnline) {
+                syncStatus.textContent = "Идёт синхронизация";
+            } else {
+                syncStatus.textContent = "Неизвестно";
             }
         }
 
-        // Загрузка данных при загрузке страницы
-        window.onload = loadHeartbeatServices;
+        function refreshPage() {
+            location.reload();
+        }
+
+        // Запуск проверки при загрузке страницы
+        window.onload = checkServers;
     </script>
 </body>
 </html>
