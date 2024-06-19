@@ -40,18 +40,27 @@ body, html {
     margin: 10px 0;
     backdrop-filter: blur(5px); /* Добавляем размытие фона */
     color: #00ff00; /* Зеленый текст */
+    flex: 1; /* Делаем блоки адаптивными */
 }
 
 .box-title {
     color: #800080; /* Фиолетовый цвет заголовков */
 }
 
+.logo-part1 {
+    color: #800080; /* Фиолетовый цвет для ITMSFT Group */
+}
+
+.logo-part2 {
+    color: #00ff00; /* Зеленый цвет для Support */
+}
+
 .small-box {
-    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: auto;
 }
 
 .large-box {
