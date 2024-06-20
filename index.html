@@ -108,8 +108,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="translucent-box">
-                        <h3 class="box-title">Title 5</h3>
-                        <pre><code>Terminal-like text here</code></pre>
+                        <h3 class="box-title">Уведомления</h3>
+                        <pre><code id="platform-notifications">Loading...</code></pre>
                     </div>
                 </div>
             </div>
@@ -141,6 +141,20 @@
                 document.getElementById('platform-news').innerText = text;
             } catch (error) {
                 document.getElementById('platform-news').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Функция для загрузки и отображения уведомлений
+        async function loadPlatformNotifications() {
+            try {
+                const response = await fetch('notifications.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('platform-notifications').innerText = text;
+            } catch (error) {
+                document.getElementById('platform-notifications').innerText = 'Ошибка загрузки данных';
             }
         }
 
@@ -212,6 +226,7 @@
             loadHeartbeatServices();
             checkServers();
             loadPlatformNews(); // Загружаем новости платформы при загрузке страницы
+            loadPlatformNotifications(); // Загружаем уведомления при загрузке страницы
         };
     </script>
 </body>
