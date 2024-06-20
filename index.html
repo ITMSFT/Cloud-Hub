@@ -11,6 +11,7 @@
         .client-info {
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
         .client-info .box-title {
             margin-right: 20px;
@@ -44,12 +45,12 @@
                         </h3>
                     </div>
                 </div>
-                <div class="col-md-auto ml-auto client-info">
-                    <div class="translucent-box small-box mr-3">
+                <div class="col-md-auto ml-auto">
+                    <div class="translucent-box small-box client-info">
                         <h3 class="box-title">John Doe</h3>
+                        <i class="fas fa-globe icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
+                        <i class="fas fa-server icon" title="Открыть панель" id="clientPanelButton"></i>
                     </div>
-                    <i class="fas fa-globe icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
-                    <i class="fas fa-server icon" title="Открыть панель" id="clientPanelButton"></i>
                 </div>
                 <div class="col-md-auto ml-auto">
                     <div class="translucent-box small-box">
