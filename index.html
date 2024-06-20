@@ -25,6 +25,40 @@
         .client-info .icon:hover {
             color: #00ff00;
         }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #050d1f;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the icon */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* Arrow at the bottom */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #050d1f transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -50,6 +84,22 @@
                         <h3 class="box-title">John Doe</h3>
                         <i class="fas fa-globe icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
                         <i class="fas fa-server icon" title="Открыть панель" id="clientPanelButton"></i>
+                        <div class="tooltip">
+                            <i class="fas fa-database icon"></i>
+                            <span class="tooltiptext">Датацентр UA, PL, IR</span>
+                        </div>
+                        <div class="tooltip">
+                            <i class="fas fa-cloud icon"></i>
+                            <span class="tooltiptext">CDN подключено</span>
+                        </div>
+                        <div class="tooltip">
+                            <i class="fas fa-shield-alt icon"></i>
+                            <span class="tooltiptext">Firewall и WAF подключен</span>
+                        </div>
+                        <div class="tooltip">
+                            <i class="fas fa-hdd icon"></i>
+                            <span class="tooltiptext">Backup Геоизбыточный подключён</span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-auto ml-auto">
