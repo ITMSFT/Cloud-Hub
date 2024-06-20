@@ -7,6 +7,24 @@
     <link href="stylebootstrap.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        .client-info .box-title {
+            margin-right: 20px;
+        }
+        .client-info .icon {
+            font-size: 24px;
+            color: white;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .client-info .icon:hover {
+            color: #00ff00;
+        }
+    </style>
 </head>
 <body>
     <div class="background">
@@ -26,12 +44,12 @@
                         </h3>
                     </div>
                 </div>
-                <div class="col-md-auto ml-auto d-flex align-items-center">
+                <div class="col-md-auto ml-auto client-info">
                     <div class="translucent-box small-box mr-3">
                         <h3 class="box-title">John Doe</h3>
                     </div>
-                    <button type="button" class="btn btn-outline-light m-2" onclick="window.location.href='https://domain.com/'">Открыть сайт</button>
-                    <button type="button" class="btn btn-outline-light m-2" id="clientPanelButton">Открыть панель</button>
+                    <i class="fas fa-globe icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
+                    <i class="fas fa-server icon" title="Открыть панель" id="clientPanelButton"></i>
                 </div>
                 <div class="col-md-auto ml-auto">
                     <div class="translucent-box small-box">
