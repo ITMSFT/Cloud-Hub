@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITMSFT Group Cloud HUB</title>
+    <link href="https://support.itmsft.net/stylebootstrap.css" rel="stylesheet">
+    <link href="https://support.itmsft.net/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        .client-info .box-title {
+            margin-right: 20px;
+        }
+        .client-info .icon {
+            font-size: 24px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .client-info .white-icon {
+            color: #ffffff;
+        }
+        .client-info .green-icon {
+            color: #00ff00;
+        }
+        .client-info .icon:hover {
+            color: red;
+        }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #050d1f;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the icon */
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* Arrow at the bottom */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #050d1f transparent transparent transparent;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .client-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .client-info .box-title {
+                margin-bottom: 10px;
+            }
+            .client-info .icons-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+            .client-info .icon {
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <video autoplay muted loop id="bg-video">
+            <source src="bgvideo.mp4" type="video/mp4">
+            Ваш браузер не поддерживает тег видео.
+        </video>
+    </div>
+    <div class="content">
+        <div class="container mt-5">
+            <div class="row mb-3">
+                <div class="col-md-auto">
+                    <div class="translucent-box small-box">
+                        <h3 class="box-title">
+                            <span class="logo-part1">ITMSFT Group</span> 
+                            <span class="logo-part2">Cloud</span>
+                        </h3>
+                    </div>
+                </div>
+
+
+                
+                <div class="col-md-auto ml-auto">
+                    <div class="translucent-box small-box client-info">
+                        <h3 class="box-title">John Doe</h3>
+                        <div class="icons-container">
+                            <i class="fas fa-globe icon white-icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
+                            <i class="fas fa-server icon white-icon" title="Открыть панель" id="clientPanelButton"></i>
+                            <i class="fas fa-database icon green-icon" title="Датацентр UA, PL, IR" onclick="window.location.href='#'"></i>
+                            <i class="fas fa-cloud icon green-icon" title="CDN подключено" onclick="window.location.href='#'"></i>
+                            <i class="fas fa-shield-alt icon green-icon" title="Firewall и WAF подключен" onclick="window.location.href='#'"></i>
+                            <i class="fas fa-hdd icon green-icon" title="Backup Геоизбыточный подключён" onclick="window.location.href='#'"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                
+                <div class="col-md-auto ml-auto">
+                    <div class="translucent-box small-box">
+                      
+                    
+                            <style type="text/css">
+                                .language-link {
+                                    margin-right: 10px;
+                                    font-size: 16px;
+                                    text-decoration: none;
+                                    color: #800080;
+                                    font-weight: bold;
+                                }
+                            
+                                .language-link:hover {
+                                    text-decoration: underline;
+                                }
+                            
+                                .goog-gt-tt {
+                                    display: none !important;
+                                }
+                            
+                                .goog-te-banner-frame {
+                                    display: none !important;
+                                }
+                            
+                                .goog-te-menu-value:hover {
+                                    text-decoration: none !important;
+                                }
+                            
+                                body {
+                                    top: 0 !important;
+                                }
+                            
+                                .google_translate_element2 {
+                                    display: none !important;
+                                }
+                            
+                                .skiptranslate {
+                                    display: none !important;
+                                }
+                            </style>
+                            
+                            
+                            <div>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|uk'); return false;">UA</a>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|en'); return false;">EN</a>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|ru'); return false;">RU</a>
+                            </div>
+                            
+                           
+                            <div id="google_translate_element2"></div>
+                            
+                            
+                            <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+                            
+                            <script type="text/javascript">
+                                function googleTranslateElementInit2() {
+                                    new google.translate.TranslateElement({pageLanguage: 'ru', autoDisplay: false}, 'google_translate_element2');
+                                }
+                            
+                                function doGTranslate(langPair) {
+                                    const value = langPair.split('|')[1]; // Получаем выбранный язык
+                                    const translateElement = document.getElementById('google_translate_element2'); // Находим элемент Google Translate
+                            
+                                    if (!translateElement) return;
+                            
+                                    // Получаем первый элемент select внутри Google Translate
+                                    const combo = translateElement.getElementsByTagName('select')[0];
+                            
+                                    // Проверяем наличие элементов перед установкой значения
+                                    if (!combo || combo.length === 0) {
+                                        setTimeout(function() {
+                                            doGTranslate(langPair); // Повторяем попытку через 500 мс, если элементы ещё не загружены
+                                        }, 500);
+                                        return;
+                                    }
+                            
+                                    // Устанавливаем выбранный язык
+                                    combo.value = value;
+                            
+                                    // Создаём и инициализируем событие изменения
+                                    if (document.createEvent) {
+                                        const event = document.createEvent('HTMLEvents');
+                                        event.initEvent('change', true, true);
+                                        combo.dispatchEvent(event);
+                                    } else {
+                                        combo.fireEvent('onchange');
+                                    }
+                                }
+                            
+                                // Автоматический перевод на украинский при загрузке страницы
+                                document.addEventListener('DOMContentLoaded', function() {
+                                   // doGTranslate('ru|uk');
+                                });
+                            </script>
+
+                        <!-- Селекторы выбора языка или другие элементы -->
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <div class="translucent-box">
+                        <h3 class="box-title">Контакты поддержки</h3>
+                        <pre><code>
+<span class="terminal-text yellow">Телефон: <a class="yellow" href="tel:+380487063848">+38 (048) 706-38-48</a></span>
+<span class="terminal-text yellow">Резервная линия: <a class="yellow" href="tel:+380487016551">+38 (048) 701-65-51</a></span>
+<span class="terminal-text red">Email: <a class="red" href="mailto:mail@itmsft.net">mail@itmsft.net</a></span>
+                        </code></pre>
+                        <div class="button-group-small">
+                            <button type="button" class="btn btn-small btn-outline-light" onclick="window.location.href='https://itmsft.com/helpdesk/my/new/5/'">Создать запрос</button>
+                            <button type="button" class="btn btn-small btn-outline-light" onclick="window.location.href='https://itmsft.com/helpdesk/my/'">Мои запросы</button>
+                        </div>
+                        <div class="messenger-icons">
+                            <a href="https://t.me/itmsft_bot" class="messenger-icon"><i class="fab fa-telegram-plane"></i></a>
+                            <a href="viber://pa?chatURI=itmsft" class="messenger-icon"><i class="fab fa-viber"></i></a>
+                            <a href="https://www.facebook.com/messages/t/itmsftgroup" class="messenger-icon"><i class="fab fa-facebook-messenger"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="translucent-box">
+                        <h3 class="box-title">HEARTBEAT СЛУЖБ</h3>
+                        <pre><code id="heartbeat-services">Loading...</code></pre>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="translucent-box">
+                        <h3 class="box-title">Облачная служба</h3>
+                        <table>
+                            <tr>
+                                <th class="yellow-text">Описание</th>
+                                <th class="green-text">Состояние</th>
+                            </tr>
+                            <tr>
+                                <td class="yellow-text">Основной:</td>
+                                <td class="green-text" id="mainServerStatus">Проверка...</td>
+                            </tr>
+                            <tr>
+                                <td class="yellow-text">Резервный:</td>
+                                <td class="green-text" id="reserveServerStatus">Проверка...</td>
+                            </tr>
+                            <tr>
+                                <td class="yellow-text">Репликация:</td>
+                                <td class="green-text" id="syncStatus">Неизвестно</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="translucent-box large-box">
+                        <h3 class="box-title">Панели управления</h3>
+                        <div class="button-group">
+                            <button type="button" class="btn btn-primary m-2" id="hostingPanelButton">Хостинг панель</button>
+                            <button type="button" class="btn btn-primary m-2" onclick="window.location.href='https://portal.azure.com/'">Azure</button>
+                            <button type="button" class="btn btn-primary m-2" onclick="window.location.href='https://admin.microsoft.com/'">Microsoft 365</button>
+                            <button type="button" class="btn btn-success m-2" onclick="window.location.href='https://outlook.office.com/'">Электронная почта</button>
+                            <button type="button" class="btn btn-success m-2" onclick="window.location.href='https://cloud.itmsft.net:90/ucp/'">Телефония</button>
+                            <button type="button" class="btn btn-secondary m-2" onclick="window.location.href='https://itmsft.com/my/'">Личный кабинет</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="translucent-box">
+                        <h3 class="box-title">Новости платформы</h3>
+                        <pre><code id="platform-news">Loading...</code></pre>
+                        <button type="button" class="btn btn-outline-light" onclick="window.location.href='https://itmsft.com/blog/'">Все новости</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="translucent-box">
+                        <h3 class="box-title">Уведомления</h3>
+                        <pre><code id="platform-notifications">Loading...</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Функция для загрузки и отображения содержимого файла
+        async function loadHeartbeatServices() {
+            try {
+                const response = await fetch('https://support.itmsft.net/services.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('heartbeat-services').innerText = text;
+            } catch (error) {
+                document.getElementById('heartbeat-services').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Функция для загрузки и отображения новостей
+        async function loadPlatformNews() {
+            try {
+                const response = await fetch('https://support.itmsft.net/news.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('platform-news').innerText = text;
+            } catch (error) {
+                document.getElementById('platform-news').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Функция для загрузки и отображения уведомлений
+        async function loadPlatformNotifications() {
+            try {
+                const response = await fetch('https://support.itmsft.net/notifications.txt');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const text = await response.text();
+                document.getElementById('platform-notifications').innerText = text;
+            } catch (error) {
+                document.getElementById('platform-notifications').innerText = 'Ошибка загрузки данных';
+            }
+        }
+
+        // Функция для проверки состояния серверов
+        function checkServer(url, callback) {
+            const img = new Image();
+            img.onload = function() { callback(true); };
+            img.onerror = function() { callback(false); };
+            img.src = url + "/favicon.ico?" + new Date().getTime();
+        }
+
+        function checkServers() {
+            const servers = [
+                { url: "https://cloud.itmsft.net", name: "Основной", statusId: "mainServerStatus" },
+                { url: "https://reserve.itmsft.net", name: "Резервный", statusId: "reserveServerStatus" }
+            ];
+
+            let mainDatacenterOnline = false;
+            let reserveDatacenterOnline = false;
+
+            servers.forEach(server => {
+                checkServer(server.url, function(isOnline) {
+                    const statusElement = document.getElementById(server.statusId);
+                    
+                    if (isOnline) {
+                        statusElement.textContent = "Активен";
+                        
+                        if (server.name === "Основной") mainDatacenterOnline = true;
+                        if (server.name === "Резервный") reserveDatacenterOnline = true;
+                    } else {
+                        statusElement.textContent = "Гибернация";
+                    }
+
+                    updateSyncStatus(mainDatacenterOnline, reserveDatacenterOnline);
+                });
+            });
+
+            // Обновляем ссылку кнопки в зависимости от состояния сервера
+            const hostingPanelButton = document.getElementById('hostingPanelButton');
+            hostingPanelButton.addEventListener('click', function() {
+                if (mainDatacenterOnline) {
+                    window.location.href = 'https://cloud.itmsft.net';
+                } else {
+                    window.location.href = 'https://reserve.itmsft.net';
+                }
+            });
+
+            // Обновляем ссылку кнопки панели клиента в зависимости от состояния сервера
+            const clientPanelButton = document.getElementById('clientPanelButton');
+            clientPanelButton.addEventListener('click', function() {
+                if (mainDatacenterOnline) {
+                    window.location.href = 'https://cloud.domain.com';
+                } else {
+                    window.location.href = 'https://reserve.domain.com';
+                }
+            });
+        }
+
+        function updateSyncStatus(mainOnline, reserveOnline) {
+            const syncStatus = document.getElementById("syncStatus");
+
+            if (mainOnline && !reserveOnline) {
+                syncStatus.textContent = "Синхронизировано";
+            } else if (!mainOnline && reserveOnline) {
+                syncStatus.textContent = "Синхронизировано";
+            } else if (mainOnline && reserveOnline) {
+                syncStatus.textContent = "Идёт синхронизация";
+            } else {
+                syncStatus.textContent = "Неизвестно";
+            }
+        }
+
+        function refreshPage() {
+            location.reload();
+        }
+
+        // Запуск проверки при загрузке страницы
+        window.onload = function() {
+            loadHeartbeatServices();
+            checkServers();
+            loadPlatformNews(); // Загружаем новости платформы при загрузке страницы
+            loadPlatformNotifications(); // Загружаем уведомления при загрузке страницы
+        };
+    </script>
+</body>
+</html>
