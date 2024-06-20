@@ -7,7 +7,6 @@
 🟢 DNS службы
 🟢 CDN службы
 🟢 WAF службы
-
 🟢 Cлужбы Microsoft
 🟢 Cлужбы Google
 🟢 Cлужбы Cloudflare 
