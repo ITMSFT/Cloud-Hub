@@ -118,6 +118,100 @@
                     <div class="translucent-box small-box">
                         <h3 class="box-title">Language</h3>
                         <!-- Селекторы выбора языка или другие элементы -->
+                        <!-- Стили -->
+                            <style type="text/css">
+                                .language-link {
+                                    margin-right: 10px;
+                                    font-size: 16px;
+                                    text-decoration: none;
+                                    color: blue;
+                                    font-weight: bold;
+                                }
+                            
+                                .language-link:hover {
+                                    text-decoration: underline;
+                                }
+                            
+                                .goog-gt-tt {
+                                    display: none !important;
+                                }
+                            
+                                .goog-te-banner-frame {
+                                    display: none !important;
+                                }
+                            
+                                .goog-te-menu-value:hover {
+                                    text-decoration: none !important;
+                                }
+                            
+                                body {
+                                    top: 0 !important;
+                                }
+                            
+                                .google_translate_element2 {
+                                    display: none !important;
+                                }
+                            
+                                .skiptranslate {
+                                    display: none !important;
+                                }
+                            </style>
+                            
+                            <!-- Ссылки для выбора языка -->
+                            <div>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|uk'); return false;">UA</a>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|en'); return false;">EN</a>
+                                <a href="#" class="language-link" onclick="doGTranslate('ru|ru'); return false;">RU</a>
+                            </div>
+                            
+                            <!-- Элемент для Google Translate -->
+                            <div id="google_translate_element2"></div>
+                            
+                            <!-- Скрипт -->
+                            <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+                            
+                            <script type="text/javascript">
+                                function googleTranslateElementInit2() {
+                                    new google.translate.TranslateElement({pageLanguage: 'ru', autoDisplay: false}, 'google_translate_element2');
+                                }
+                            
+                                function doGTranslate(langPair) {
+                                    const value = langPair.split('|')[1]; // Получаем выбранный язык
+                                    const translateElement = document.getElementById('google_translate_element2'); // Находим элемент Google Translate
+                            
+                                    if (!translateElement) return;
+                            
+                                    // Получаем первый элемент select внутри Google Translate
+                                    const combo = translateElement.getElementsByTagName('select')[0];
+                            
+                                    // Проверяем наличие элементов перед установкой значения
+                                    if (!combo || combo.length === 0) {
+                                        setTimeout(function() {
+                                            doGTranslate(langPair); // Повторяем попытку через 500 мс, если элементы ещё не загружены
+                                        }, 500);
+                                        return;
+                                    }
+                            
+                                    // Устанавливаем выбранный язык
+                                    combo.value = value;
+                            
+                                    // Создаём и инициализируем событие изменения
+                                    if (document.createEvent) {
+                                        const event = document.createEvent('HTMLEvents');
+                                        event.initEvent('change', true, true);
+                                        combo.dispatchEvent(event);
+                                    } else {
+                                        combo.fireEvent('onchange');
+                                    }
+                                }
+                            
+                                // Автоматический перевод на украинский при загрузке страницы
+                                document.addEventListener('DOMContentLoaded', function() {
+                                   // doGTranslate('ru|uk');
+                                });
+                            </script>
+
+                        <!-- Селекторы выбора языка или другие элементы -->
                     </div>
                 </div>
             </div>
