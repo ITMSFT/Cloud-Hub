@@ -103,23 +103,7 @@
                         </h3>
                     </div>
                 </div>
-
-
-                
-                <!-- <div class="col-md-auto ml-auto">
-                    <div class="translucent-box small-box client-info">
-                        <h3 class="box-title">John Doe</h3>
-                        <div class="icons-container">
-                            <i class="fas fa-globe icon white-icon" title="Открыть сайт" onclick="window.location.href='https://domain.com/'"></i>
-                            <i class="fas fa-server icon white-icon" title="Открыть панель" id="clientPanelButton"></i>
-                            <i class="fas fa-database icon green-icon" title="Датацентр UA, PL, IR" onclick="window.location.href='#'"></i>
-                            <i class="fas fa-cloud icon green-icon" title="CDN подключено" onclick="window.location.href='#'"></i>
-                            <i class="fas fa-shield-alt icon green-icon" title="Firewall и WAF подключен" onclick="window.location.href='#'"></i>
-                            <i class="fas fa-hdd icon green-icon" title="Backup Геоизбыточный подключён" onclick="window.location.href='#'"></i>
-                        </div>
-                    </div>
-                </div> -->
-                
+       
                 <div class="col-md-auto ml-auto">
                     <div class="translucent-box small-box">
                       
@@ -389,15 +373,7 @@
                 }
             });
 
-            // Обновляем ссылку кнопки панели клиента в зависимости от состояния сервера
-            const clientPanelButton = document.getElementById('clientPanelButton');
-            clientPanelButton.addEventListener('click', function() {
-                if (mainDatacenterOnline) {
-                    window.location.href = 'https://cloud.domain.com';
-                } else {
-                    window.location.href = 'https://reserve.domain.com';
-                }
-            });
+            
         }
 
         function updateSyncStatus(mainOnline, reserveOnline) {
