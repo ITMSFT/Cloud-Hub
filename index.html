@@ -6,7 +6,7 @@
     <title>GitHub Styled Page</title>
     <link href="https://support.itmsft.net/stylebootstrap.css" rel="stylesheet">
     <link href="https://support.itmsft.net/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://support.itmsft.net/fa-all.min.css">
     <style>
         .client-info {
             display: flex;
@@ -207,7 +207,7 @@
         // Функция для загрузки и отображения содержимого файла
         async function loadHeartbeatServices() {
             try {
-                const response = await fetch('services.txt');
+                const response = await fetch('https://support.itmsft.net/services.txt');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -235,7 +235,7 @@
         // Функция для загрузки и отображения уведомлений
         async function loadPlatformNotifications() {
             try {
-                const response = await fetch('notifications.txt');
+                const response = await fetch('https://support.itmsft.net/notifications.txt');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
