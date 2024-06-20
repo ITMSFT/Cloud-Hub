@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Styled Page</title>
-    <link href="stylebootstrap.css" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <link href="https://support.itmsft.net/stylebootstrap.css" rel="stylesheet">
+    <link href="https://support.itmsft.net/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .client-info {
@@ -221,7 +221,7 @@
         // Функция для загрузки и отображения новостей
         async function loadPlatformNews() {
             try {
-                const response = await fetch('news.txt');
+                const response = await fetch('https://support.itmsft.net/news.txt');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
