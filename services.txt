@@ -8,7 +8,7 @@
 🟢 CDN службы
 🟢 WAF службы
 🟢 Cлужбы Microsoft
-🟢 Cлужбы Google
+⚠️ Cлужбы Google
 🟢 Cлужбы Cloudflare 
 🟢 Cлужбы Meta
     
